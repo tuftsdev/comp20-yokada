@@ -1,5 +1,8 @@
 ## README.md
 
+By: Yuta Okada
+Date: 02/15/2016
+
 SPECIFICATIONS:
 1. It only uses one HTML file named index.html (given), one CSS file named
 responsive.css, and one image file named software.png to display 10 different
