@@ -7,6 +7,7 @@ h1 {
 }
 
 #music_video {
+	background-color: blue;
 	display: block;
 	margin: 0 auto;
 }
