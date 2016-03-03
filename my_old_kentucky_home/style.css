@@ -1,21 +1,27 @@
 h1 {
-	color: red;
+	color: blue;
 	text-align: center;
 	font-family: "Times New Roman", Times, serif;
 	font-style: normal;
 	font-size: 96px;
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
 
 #music_video {
-	background-color: blue;
 	display: block;
 	margin: 0 auto;
 }
 
 #lyrics {
-	color: #FF0000;
+	color: black;
 	text-align: center;
 	font-family: "Times New Roman", Times, serif;
 	font-style: italic;
-	font-size: 48px;
+	font-size: 36px;
+}
+
+.smallMargin {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }

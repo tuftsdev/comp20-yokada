@@ -17,33 +17,39 @@
 	// Complete this section and create a CSS file named style.css
 	var video = document.getElementById("music_video");
 	var lyrics = document.getElementById("lyrics");
-	video.addEventListener("ontimeupdate", function() {
-		if (video.currentTime < 10) {
-			lyrics.innerHTML = "<h3> The sun shines bright in My Old Kentucky Home, </h3>";
-		} else if (video.currentTime < 20) {
-			lyrics.innerHTML = "<h3> 'Tis summer, the people are gay; </h3>";
-		} else if (video.currentTime < 30) {
-			lyrics.innerHTML = "<h3> The corn-top's ripe and the meadow's in the bloom </h3>";
-		} else if (video.currentTime < 40) {
-			lyrics.innerHTML = "<h3>  While the birds make music all the day. </h3>";
-		} else if (video.currentTime < 50) {
-			lyrics.innerHTML = "<h3> The young folks roll on the little cabin floor, </h3>";
-		} else if (video.currentTime < 60) {
-			lyrics.innerHTML = "<h3> All merry, all happy and bright; </h3>";
+	video.addEventListener("timeupdate", function() {
+
+		if (video.currentTime < 8) {
+			lyrics.innerHTML = "<h3 class='smallMargin'> My Old Kentucky Home </h3> <img src='kentucky_home_1.jpg' alt='picture of horse' height ='300' width='400'>";
+		} else if (video.currentTime < 15) {
+			lyrics.innerHTML = "<h3 class='smallMargin'> The sun shines bright in My Old Kentucky Home, </h3>";
+		} else if (video.currentTime < 21) {
+			lyrics.innerHTML = "<h3 class='smallMargin'> \'Tis summer, the people are gay; </h3>";
+		} else if (video.currentTime < 28) {
+			lyrics.innerHTML = "<h3 class='smallMargin'> The corn-top\'s ripe and the meadow\'s in the bloom </h3>";
+		} else if (video.currentTime < 35) {
+			lyrics.innerHTML = "<h3 class='smallMargin'>  While the birds make music all the day. </h3>";
+		} else if (video.currentTime < 42) {
+			lyrics.innerHTML = "<h3 class='smallMargin'> The young folks roll on the little cabin floor, </h3> <img src='kentucky_home_2.png' alt='map of Kentucky' height ='300' width='500'>";
+		} else if (video.currentTime < 49) {
+			lyrics.innerHTML = "<h3 class='smallMargin'> All merry, all happy and bright; </h3> ";
+		} else if (video.currentTime < 55) {
+			lyrics.innerHTML = "<h3 class='smallMargin'> By \'n\' by hard times comes a knocking at the door, </h3>";
+		} else if (video.currentTime < 64) {
+			lyrics.innerHTML = "<h3 class='smallMargin'> Then My Old Kentucky Home, good night! </h3> <img src='kentucky_home_3.jpg' alt='cute drawing of land' height ='300' width='500'>";
 		} else if (video.currentTime < 70) {
-			lyrics.innerHTML = "<h3> By 'n' by hard times comes a knocking at the door, </h3>";
+			lyrics.innerHTML = "<h3 class='smallMargin'> Weep no more my lady </h3>";
+		} else if (video.currentTime < 76) {
+			lyrics.innerHTML = "<h3 class='smallMargin'> Oh weep no more today; </h3>";
 		} else if (video.currentTime < 80) {
-			lyrics.innerHTML = "<h3> Then My Old Kentucky Home, good night! </h3>";
-		} else if (video.currentTime < 90) {
-			lyrics.innerHTML = "<h3> Weep no more my lady <br> Oh weep no more today;</h3>";
-		} else if (video.currentTime < 100) {
-			lyrics.innerHTML = "<h3> We will sing one song <br> For My Old Kentucky Home </h3>";
+			lyrics.innerHTML = "<h3 class='smallMargin'> We will sing one song </h3>";
+		} else if (video.currentTime < 83) {
+			lyrics.innerHTML = "<h3 class='smallMargin'> For My Old Kentucky Home </h3>";
 		} else {
-			lyrics.innerHTML = "<h3> For My Old Kentucky Home, far away </h3>";
+			lyrics.innerHTML = "<h3 class='smallMargin'> For My Old Kentucky Home, far away </h3>";
 		}
-	}
-	), false
-}
+	}, false);
+
 </script>
 </body>
 </html>	
