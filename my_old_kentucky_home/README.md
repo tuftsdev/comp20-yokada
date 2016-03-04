@@ -11,8 +11,8 @@ SPECIFICATIONS:
    (https://www.cs.tufts.edu/comp/20/my_old_kentucky_home.mp4) 
    is annotated line-by-line, in closed captions.
 
-3. Annotation (including inserted images) in the <div id="lyrics"> 
-   is defined inside the <script> </script> in index.html using
+3. Annotation (including inserted images) in the div id="lyrics"
+   is defined inside the script tag in index.html using
    Javascript. 
 
 4. Three images are used in some parts of the line-by-line annotation.
