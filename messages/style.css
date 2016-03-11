@@ -1,1 +1,19 @@
-/* Your CSS here... */
+/*
+By: Yuta Okada
+Date: March 10th, 2016
+*/
+
+h1 {
+	font-size: 48px;
+	font-family: "Times New Roman", Times, serif;
+	font-style: bold;
+	color: black;
+}
+
+#messages {
+	font-size: 24px;
+	font-family: "Times New Roman", Times, serif;
+	font-style: italic;
+	color: blue;
+	background: gray;
+}
