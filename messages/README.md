@@ -1,6 +1,6 @@
 ## README.md for Tufts Comp 20 Lab 6: Messages
 By: Yuta Okada
-Date: 03/10/2016
+Date: March 10th, 2016
 
 
 SPECIFICATIONS:
