@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<script src="https://maps.google.com/maps/api/js?sensor=true"></script>
+		<link rel="stylesheet" href="style.css" type="text/css" />
+		<title>Historic Landmarks</title>
+	
+		<script>
+			var myLat = 0;
+			var myLng = 0;
+			var map;
+			var People = new Array();
+			var Landmarks = new Array();
+			var closestLandmark = {
+				distance:24902,
+				lat:0,
+				lng:0,
+				name:null
+			};
+			var me = new google.maps.LatLng(myLat, myLng);
+			var request;
+
+			var myIcon = {url: 'myIcon.png',
+						 	   size: new google.maps.Size(50, 50)};
+			var friendIcon = {url: 'friendIcon.png',
+							   size: new google.maps.Size(30, 30)};
+			var landmarkIcon = {url: 'landmarkIcon.png',
+							   size: new google.maps.Size(30, 30)};
+
+			var myOptions = {
+								zoom: 13,
+								center: me,
+								mapTypeId: google.maps.MapTypeId.ROADMAP
+							};
+
+			var personInfowindow = new google.maps.InfoWindow();
+			var landInfowindow = new google.maps.InfoWindow();
+			var lastInfowindow = null;
+
+			function init ()
+			{
+				// Create the map in the "map_canvas" <div>
+				map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+				getMyLocation();
+			}
+
+			function getMyLocation () {
+				// Use navigator.geolocation to get my current latitude and longitude
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(function(position) {
+						myLat = position.coords.latitude;
+						myLng = position.coords.longitude;
+						renderMap();
+					});
+				}
+				else {
+					alert("Geolocation is not supported by your web browser.  What a shame!");
+				}
+			}
+
+			function renderMap()
+			{
+				me = new google.maps.LatLng(myLat, myLng);
+				
+				// Update map and go there...
+				map.panTo(me);
+				requestData();
+			}
+
+			function requestData() {
+				// Send request to the dastastore
+				request = new XMLHttpRequest();
+				var url = "https://defense-in-derpth.herokuapp.com/sendLocation";
+				var params = "login=ALEXIS_ZAMORA&lat=" + myLat + "&lng=" + myLng;
+				request.open("POST", url, true);
+				request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				request.onreadystatechange = callback;
+				request.send(params);
+			}
+
+			function callback () {
+				if (request.readyState == 4 && request.status == 200) {
+					raw = request.responseText;
+					var Data = JSON.parse(raw);
+
+					// Handle the people data
+					for (i = 0; i < Data.people.length; i++) {
+						People[i] = new google.maps.LatLng(Data.people[i].lat, Data.people[i].lng);
+
+						// The Haversine Formula: The Distance Between My Classmate and Myself
+						Number.prototype.toRad = function() {
+   							return this * Math.PI / 180;
+						}
+						var lat2 = Data.people[i].lat; 
+						var lon2 = Data.people[i].lng; 
+						var lat1 = myLat; 
+						var lon1 = myLng; 
+						var R = 6371
+						var x1 = lat2-lat1;
+						var dLat = x1.toRad();  
+						var x2 = lon2-lon1;
+						var dLon = x2.toRad(); 
+						var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+                			Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+                			Math.sin(dLon/2) * Math.sin(dLon/2);  
+						var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+						var d = R * c;  // d is the distance
+						
+						// Handle people marker and infowindow here
+						personInfowindow = new google.maps.InfoWindow({
+							content: Data.people[i].login + " is " + d + " miles away from me!"
+						})
+						person = new google.maps.Marker({
+							position: People[i],
+							title: Data.people[i].login,
+							icon: friendIcon,
+							infowindow: personInfowindow
+						});
+						// Check if the classmate marker is actually myself, and display if not myself
+						if (Data.people[i].login != "ALEXIS_ZAMORA") {
+							person.setMap(map);
+						}
+
+						// Display classmate infowindow on click on person (marker)
+						google.maps.event.addListener(person, 'click', function() {
+								if (lastInfowindow == null) {
+									this.infowindow.open(map, this);
+									myClosestLandmark.setMap(null);
+									lastInfowindow = this;
+								} 
+								else if (lastInfowindow != null) {
+									lastInfowindow.infowindow.close();
+									this.infowindow.open(map, this);
+									myClosestLandmark.setMap(null);
+									lastInfowindow = this;
+								}
+						});
+					}
+					
+					// Handle the landmark data
+					var latNum = 1;  // index in JavaScript array
+					var lngNum = 0;  // index in JavaScript array
+					for (j = 0; j < Data.landmarks.length; j++) {
+						land = new google.maps.LatLng(Data.landmarks[j].geometry.coordinates[latNum], Data.landmarks[j].geometry.coordinates[lngNum]);
+						Landmarks[j] = land;
+
+						// The Haversine Formula: The Distance Between Historic Landmark And Myself
+						Number.prototype.toRad = function() {
+   							return this * Math.PI / 180;
+						}
+						var landLat2 = Data.landmarks[j].geometry.coordinates[latNum]; 
+						var landLon2 = Data.landmarks[j].geometry.coordinates[lngNum]; 
+						var landLat1 = myLat; 
+						var landLon1 = myLng; 
+						var landR = 6371
+						var landx1 = landLat2-landLat1;
+						var landdLat = landx1.toRad();  
+						var landx2 = landLon2-landLon1;
+						var landdLon = landx2.toRad(); 
+						var land_a = Math.sin(landdLat/2) * Math.sin(landdLat/2) + 
+                			Math.cos(landLat1.toRad()) * Math.cos(landLat2.toRad()) * 
+                			Math.sin(landdLon/2) * Math.sin(landdLon/2);  
+						var land_c = 2 * Math.atan2(Math.sqrt(land_a), Math.sqrt(1-land_a)); 
+						var land_d = R * land_c;  // land_d is the distance
+
+						// Update closest landmark if necessary
+						if (closestLandmark.distance > land_d) {
+							closestLandmark.distance = land_d;
+							closestLandmark.name = Data.landmarks[j].properties.Location_Name;
+							closestLandmark.lat = Data.landmarks[j].geometry.coordinates[latNum];
+							closestLandmark.lng = Data.landmarks[j].geometry.coordinates[lngNum];
+						}
+
+						// Handle landmark marker and infowindow here
+						landInfowindow = new google.maps.InfoWindow({
+							content: Data.landmarks[j].properties.Details,
+						})
+						land = new google.maps.Marker({
+							position: Landmarks[j],
+							title: Data.landmarks[j].properties.Location_Name,
+							icon: landmarkIcon,
+							infowindow: landInfowindow
+						});
+						land.setMap(map);
+
+						// Display landmark infowindow on click on land (marker)
+						google.maps.event.addListener(land, 'click', function() {
+								if (lastInfowindow == null) {
+									this.infowindow.open(map, this);
+									myClosestLandmark.setMap(null);
+									lastInfowindow = this;
+								} 
+								else if (lastInfowindow != null) {
+									lastInfowindow.infowindow.close();
+									this.infowindow.open(map, this);
+									myClosestLandmark.setMap(null);
+									lastInfowindow = this;
+								}
+						});
+					}
+
+					// Handle "my = ALEXIS_ZAMORA" marker and infowindow here
+					myInfowindow = new google.maps.InfoWindow({
+						content: "Closest Historic Landmark \"" + closestLandmark.name + "\" is distance " + closestLandmark.distance + " miles away.",
+					})
+					myMarker = new google.maps.Marker({
+						position: me,
+						title: "ALEXIS_ZAMORA",
+						icon: myIcon,
+						infowindow: myInfowindow
+					});
+					myMarker.setMap(map);
+
+					// Handle polyline to my cloest landmark
+					var myClosestLandmarkCoordinates = [
+						{lat: myLat, lng: myLng},
+						{lat: closestLandmark.lat, lng: closestLandmark.lng}
+					];
+					var myClosestLandmark = new google.maps.Polyline({
+   						path: myClosestLandmarkCoordinates,
+   						geodesic: true,
+   						strokeColor: '#FF0000',
+   						strokeOpacity: 1.0,
+   						strokeWeight: 2
+   					});
+
+					// Display my infowindow and polyline on click on myMarker
+					google.maps.event.addListener(myMarker, 'click', function() {
+						if (lastInfowindow == null) {
+							this.infowindow.open(map, this);
+							myClosestLandmark.setMap(map);
+							lastInfowindow = this;
+						} 
+						else if (lastInfowindow != null) {
+							lastInfowindow.infowindow.close();
+							this.infowindow.open(map, this);
+							myClosestLandmark.setMap(map);
+							lastInfowindow = this;
+						}
+					});
+				} 
+				else if (request.readyState == 4 && request.status != 200) {
+					alert("XMLHTTPRequest did not work. Could not retrieve data.");
+				}
+			};
+
+		</script>
+	</head>
+
+	<body onload="init()">
+		<div id="map_canvas"></div>
+	</body>
+
+</html>	
