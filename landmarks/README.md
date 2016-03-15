@@ -18,7 +18,9 @@ SPECIFICATIONS:
 
 7. Clicking on my marker displays the name of the closest historic landmark from where I am including the miles away in an information window, and renders a polyline between my current location and that closest historic landmark
 
-8. No errors and console.log() outputs exist in JavaScript console
+8. Only one information window is displayed in the map at any time
+
+9. No errors and console.log() outputs exist in JavaScript console
 
 
 COLLABORATORS:
