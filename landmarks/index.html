@@ -110,7 +110,7 @@
 						
 						// Handle people marker and infowindow here
 						personInfowindow = new google.maps.InfoWindow({
-							content: Data.people[i].login + " is " + d + " miles away from me!"
+							content: "<b>" + Data.people[i].login + "</b> is <b>" + d + "</b> miles away from me!"
 						})
 						person = new google.maps.Marker({
 							position: People[i],
@@ -203,7 +203,7 @@
 
 					// Handle "my = ALEXIS_ZAMORA" marker and infowindow here
 					myInfowindow = new google.maps.InfoWindow({
-						content: "Closest Historic Landmark \"" + closestLandmark.name + "\" is distance " + closestLandmark.distance + " miles away.",
+						content: "I am <b>ALEXIS_ZAMORA</b>" + "! Closest Historic Landmark <b> \"" + closestLandmark.name + "\" </b> is distance <b>" + closestLandmark.distance + "</b> miles away!",
 					})
 					myMarker = new google.maps.Marker({
 						position: me,

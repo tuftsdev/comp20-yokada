@@ -10,14 +10,13 @@ SPECIFICATIONS:
 
 
 COLLABORATORS:
-StackOverFlow for the JavaScript implementation of the Haversine Formula:
-http://stackoverflow.com/questions/14560999/using-the-haversine-formula-in-javascript
-
 Exchanged ideas with: Joe Kamibeppu, Anna Kasagawa
 
 HOURS SPENT:
-I have approximately spent 15 hours on this assignment.
+I have approximately spent 20 hours on this assignment.
 
 REFERENCES:
 JavaScript implementation of the Haversine Formula:
 http://stackoverflow.com/questions/14560999/using-the-haversine-formula-in-javascript
+
+Styling in CSS style.css was adapted from: https://github.com/tuftsdev/WebProgramming/blob/gh-pages/examples/google_maps/geolocation_map_style.css
