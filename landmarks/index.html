@@ -1,3 +1,5 @@
+<!-- By: Yuta Okada, Data: March 15th, 2016 -->
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,6 +10,7 @@
 		<title>Historic Landmarks</title>
 	
 		<script>
+			var request;
 			var myLat = 0;
 			var myLng = 0;
 			var map;
@@ -20,21 +23,17 @@
 				name:null
 			};
 			var me = new google.maps.LatLng(myLat, myLng);
-			var request;
-
 			var myIcon = {url: 'myIcon.png',
-						 	   size: new google.maps.Size(50, 50)};
+						  size: new google.maps.Size(50, 50)};
 			var friendIcon = {url: 'friendIcon.png',
-							   size: new google.maps.Size(30, 30)};
+							  size: new google.maps.Size(30, 30)};
 			var landmarkIcon = {url: 'landmarkIcon.png',
-							   size: new google.maps.Size(30, 30)};
-
+							    size: new google.maps.Size(30, 30)};
 			var myOptions = {
 								zoom: 13,
 								center: me,
 								mapTypeId: google.maps.MapTypeId.ROADMAP
 							};
-
 			var personInfowindow = new google.maps.InfoWindow();
 			var landInfowindow = new google.maps.InfoWindow();
 			var lastInfowindow = null;
@@ -82,7 +81,7 @@
 
 			function callback () {
 				if (request.readyState == 4 && request.status == 200) {
-					raw = request.responseText;
+					var raw = request.responseText;
 					var Data = JSON.parse(raw);
 
 					// Handle the people data
@@ -106,13 +105,13 @@
                 			Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
                 			Math.sin(dLon/2) * Math.sin(dLon/2);  
 						var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-						var d = R * c;  // d is the distance
+						var d = R * c / 1.609344;  // d is the distance in miles
 						
 						// Handle people marker and infowindow here
-						personInfowindow = new google.maps.InfoWindow({
+						var personInfowindow = new google.maps.InfoWindow({
 							content: "<b>" + Data.people[i].login + "</b> is <b>" + d + "</b> miles away from me!"
 						})
-						person = new google.maps.Marker({
+						var person = new google.maps.Marker({
 							position: People[i],
 							title: Data.people[i].login,
 							icon: friendIcon,
@@ -143,8 +142,8 @@
 					var latNum = 1;  // index in JavaScript array
 					var lngNum = 0;  // index in JavaScript array
 					for (j = 0; j < Data.landmarks.length; j++) {
-						land = new google.maps.LatLng(Data.landmarks[j].geometry.coordinates[latNum], Data.landmarks[j].geometry.coordinates[lngNum]);
-						Landmarks[j] = land;
+						var landPos = new google.maps.LatLng(Data.landmarks[j].geometry.coordinates[latNum], Data.landmarks[j].geometry.coordinates[lngNum]);
+						Landmarks[j] = landPos;
 
 						// The Haversine Formula: The Distance Between Historic Landmark And Myself
 						Number.prototype.toRad = function() {
@@ -161,9 +160,9 @@
 						var landdLon = landx2.toRad(); 
 						var land_a = Math.sin(landdLat/2) * Math.sin(landdLat/2) + 
                 			Math.cos(landLat1.toRad()) * Math.cos(landLat2.toRad()) * 
-                			Math.sin(landdLon/2) * Math.sin(landdLon/2);  
+                			Math.sin(landdLon/2) * Math.sin(landdLon/2);
 						var land_c = 2 * Math.atan2(Math.sqrt(land_a), Math.sqrt(1-land_a)); 
-						var land_d = R * land_c;  // land_d is the distance
+						var land_d = R * land_c / 1.609344;  // land_d is the distance in miles
 
 						// Update closest landmark if necessary
 						if (closestLandmark.distance > land_d) {
@@ -174,10 +173,10 @@
 						}
 
 						// Handle landmark marker and infowindow here
-						landInfowindow = new google.maps.InfoWindow({
+						var landInfowindow = new google.maps.InfoWindow({
 							content: Data.landmarks[j].properties.Details,
 						})
-						land = new google.maps.Marker({
+						var land = new google.maps.Marker({
 							position: Landmarks[j],
 							title: Data.landmarks[j].properties.Location_Name,
 							icon: landmarkIcon,
@@ -202,10 +201,10 @@
 					}
 
 					// Handle "my = ALEXIS_ZAMORA" marker and infowindow here
-					myInfowindow = new google.maps.InfoWindow({
+					var myInfowindow = new google.maps.InfoWindow({
 						content: "I am <b>ALEXIS_ZAMORA</b>" + "! Closest Historic Landmark <b> \"" + closestLandmark.name + "\" </b> is distance <b>" + closestLandmark.distance + "</b> miles away!",
 					})
-					myMarker = new google.maps.Marker({
+					var myMarker = new google.maps.Marker({
 						position: me,
 						title: "ALEXIS_ZAMORA",
 						icon: myIcon,
