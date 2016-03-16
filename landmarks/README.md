@@ -4,23 +4,23 @@ Date: March 15th, 2016 <br/>
 
 
 SPECIFICATIONS: <br/>
-1. Includes index.html, style.css, README.md (this file), myIcon.png, friendIcon.png, and landmarkIcon.png
+1. Includes index.html, style.css, README.md (this file), myIcon.png, friendIcon.png, and landmarkIcon.png.
 
-2. Uses JavaScript navigator.geolocation object to retrieve my location
+2. Uses JavaScript navigator.geolocation object to retrieve my location.
 
-3. Sends my location (login, latitude, and longitude information) to datastore via HTTP POST using the JavaScript XMLHttpRequest
+3. Sends my location (login, latitude, and longitude information) to datastore via HTTP POST using the JavaScript XMLHttpRequest.
 
-4. Displays locations of people in the class (friendIcon.png used as the icon for all classmates),  historic landmarks within one mile of where I am (landmarkIcon.png used as the icon for all landmarks), and myself on the map (myIcon.png used as the icon)
+4. Displays locations of people in the class (friendIcon.png used as the icon for all classmates),  historic landmarks within one mile of where I am (landmarkIcon.png used as the icon for all landmarks), and myself on the map (myIcon.png used as the icon).
 
-5. Clicking on a classmate's marker displays the classmate's login, and mile(s) away from me in an information window
+5. Clicking on a classmate's marker displays the classmate's login, and mile(s) away from me in an information window.
 
-6. Clicking on a landmark's marker displays landmark's details in an information window
+6. Clicking on a landmark's marker displays landmark's details in an information window.
 
-7. Clicking on my marker displays the name of the closest historic landmark from where I am including the miles away in an information window, and renders a polyline between my current location and that closest historic landmark
+7. Clicking on my marker displays the name of the closest historic landmark from where I am including the miles away in an information window, and renders a polyline between my current location and that closest historic landmark.
 
-8. Only one information window is displayed in the map at any time
+8. Only one information window is displayed in the map at any time.
 
-9. No errors and console.log() outputs exist in JavaScript console
+9. No errors and console.log() outputs exist in JavaScript console.
 
 
 COLLABORATORS: <br/>
