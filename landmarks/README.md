@@ -1,9 +1,9 @@
-README.md for Tufts Comp 20 Assignment 2: Historic Landmarks
-By: Yuta Okada
-Date: March 15th, 2016
+README.md for Tufts Comp 20 Assignment 2: Historic Landmarks <br/>
+By: Yuta Okada <br/>
+Date: March 15th, 2016 <br/>
 
 
-SPECIFICATIONS:
+SPECIFICATIONS: <br/>
 1. Includes index.html, style.css, README.md (this file), myIcon.png, friendIcon.png, and landmarkIcon.png
 
 2. Uses JavaScript navigator.geolocation object to retrieve my location
@@ -23,15 +23,15 @@ SPECIFICATIONS:
 9. No errors and console.log() outputs exist in JavaScript console
 
 
-COLLABORATORS:
+COLLABORATORS: <br/>
 Exchanged ideas with: Joe Kamibeppu, Anna Kasagawa
 
 
-HOURS SPENT:
+HOURS SPENT: <br/>
 I have approximately spent 20 hours on this assignment.
 
 
-REFERENCES:
+REFERENCES: <br/>
 Rendering Google Map: https://github.com/tuftsdev/WebProgramming/blob/gh-pages/examples/google_maps/geolocation_map.html
 
 Google Map Polyline API: https://developers.google.com/maps/documentation/javascript/examples/polyline-simple
