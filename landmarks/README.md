@@ -18,7 +18,7 @@ SPECIFICATIONS: <br/>
 
 (7). Clicking on my marker displays the name of the closest historic landmark from where I am, including the miles away, in an information window.
 
-(8). The map renders a polyline between my current location and the closest historic landmark at all time.
+(8). The map renders a polyline between my current location and the closest historic landmark at all times.
 
 (9). Only one information window is displayed in the map at any time.
 
