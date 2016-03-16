@@ -1,4 +1,4 @@
-README.md for Tufts Comp 20 Assignment 2: Historic Landmarks <br/>
+## README.md for Tufts Comp 20 Assignment 2: Historic Landmarks
 By: Yuta Okada <br/>
 Date: March 15th, 2016 <br/>
 
@@ -16,11 +16,13 @@ SPECIFICATIONS: <br/>
 
 (6). Clicking on a landmark's marker displays landmark's details in an information window.
 
-(7). Clicking on my marker displays the name of the closest historic landmark from where I am including the miles away in an information window, and renders a polyline between my current location and that closest historic landmark.
+(7). Clicking on my marker displays the name of the closest historic landmark from where I am, including the miles away, in an information window.
 
-(8). Only one information window is displayed in the map at any time.
+(8). The map renders a polyline between my current location and the closest historic landmark all the time.
 
-(9). No errors and console.log() outputs exist in JavaScript console.
+(9). Only one information window is displayed in the map at any time.
+
+(10). No errors and console.log() outputs exist in JavaScript console.
 
 
 COLLABORATORS: <br/>

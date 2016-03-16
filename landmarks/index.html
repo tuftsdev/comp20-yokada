@@ -107,7 +107,7 @@
 						var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
 						var d = R * c / 1.609344;  // d is the distance in miles
 						
-						// Handle people marker and infowindow here
+						// Display people marker and create infowindow here
 						var personInfowindow = new google.maps.InfoWindow({
 							content: "<b>" + Data.people[i].login + "</b> is <b>" + d + "</b> miles away from me!"
 						})
@@ -126,13 +126,11 @@
 						google.maps.event.addListener(person, 'click', function() {
 								if (lastInfowindow == null) {
 									this.infowindow.open(map, this);
-									myClosestLandmark.setMap(null);
 									lastInfowindow = this;
 								} 
 								else if (lastInfowindow != null) {
 									lastInfowindow.infowindow.close();
 									this.infowindow.open(map, this);
-									myClosestLandmark.setMap(null);
 									lastInfowindow = this;
 								}
 						});
@@ -172,7 +170,7 @@
 							closestLandmark.lng = Data.landmarks[j].geometry.coordinates[lngNum];
 						}
 
-						// Handle landmark marker and infowindow here
+						// Display landmark marker and creates infowindow here
 						var landInfowindow = new google.maps.InfoWindow({
 							content: Data.landmarks[j].properties.Details,
 						})
@@ -188,19 +186,17 @@
 						google.maps.event.addListener(land, 'click', function() {
 								if (lastInfowindow == null) {
 									this.infowindow.open(map, this);
-									myClosestLandmark.setMap(null);
 									lastInfowindow = this;
 								} 
 								else if (lastInfowindow != null) {
 									lastInfowindow.infowindow.close();
 									this.infowindow.open(map, this);
-									myClosestLandmark.setMap(null);
 									lastInfowindow = this;
 								}
 						});
 					}
 
-					// Handle "my = ALEXIS_ZAMORA" marker and infowindow here
+					// Display "my = ALEXIS_ZAMORA" marker and infowindow here
 					var myInfowindow = new google.maps.InfoWindow({
 						content: "I am <b>ALEXIS_ZAMORA</b>" + "! Closest Historic Landmark <b> \"" + closestLandmark.name + "\" </b> is distance <b>" + closestLandmark.distance + "</b> miles away!",
 					})
@@ -212,7 +208,7 @@
 					});
 					myMarker.setMap(map);
 
-					// Handle polyline to my cloest landmark
+					// Display polyline to my cloest landmark
 					var myClosestLandmarkCoordinates = [
 						{lat: myLat, lng: myLng},
 						{lat: closestLandmark.lat, lng: closestLandmark.lng}
@@ -224,18 +220,17 @@
    						strokeOpacity: 1.0,
    						strokeWeight: 2
    					});
+   					myClosestLandmark.setMap(map);
 
-					// Display my infowindow and polyline on click on myMarker
+					// Display my infowindow on click on myMarker
 					google.maps.event.addListener(myMarker, 'click', function() {
 						if (lastInfowindow == null) {
 							this.infowindow.open(map, this);
-							myClosestLandmark.setMap(map);
 							lastInfowindow = this;
 						} 
 						else if (lastInfowindow != null) {
 							lastInfowindow.infowindow.close();
 							this.infowindow.open(map, this);
-							myClosestLandmark.setMap(map);
 							lastInfowindow = this;
 						}
 					});
