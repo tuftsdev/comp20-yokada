@@ -11,12 +11,12 @@
 		if (localStorage.length > 0) {
 
 		// Display previous logs when page is opened
-			output = "";
+			var output = "";
 			
 			// Lastest update showing first
 			for (i = localStorage.length - 1; i >= 0; i--) {
-				var num = parseInt(localStorage.key(i));
-				var date = new Date(num).toString();
+				var numDate = parseInt(localStorage.key(i));
+				var date = new Date(numDate).toString();
 				var output = output + "<p> " + date + " - " +
 				localStorage[localStorage.key(i)] + "</p>";
 			};
@@ -29,18 +29,18 @@
 		$(document).keypress(function(e) {
 			if (e.which == 13) {
 
-				captainLog = $('#msg')[0].value;
+				var captainLog = $('#msg')[0].value;
 				localStorage[new Date().getTime()] = captainLog;
 				$('#msg')[0].value = '';  // Clear text box
 				
 				elemLog = $('#log')[0];
-				output = "";
+				var output = "";
 
 				// Lastest update showing first
 				for (j = localStorage.length - 1; j >= 0; j--) {
-					num = parseInt(localStorage.key(j));
-					date = new Date(num).toString();
-					output = output + "<p> " + date + " - " +
+					var numDate = parseInt(localStorage.key(j));
+					var date = new Date(numDate).toString();
+					var output = output + "<p> " + date + " - " +
 					localStorage[localStorage.key(j)] + "</p>";
 				};				
 				elemLog.innerHTML = output;
