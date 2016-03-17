@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Captain's Log</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script>
+
+	$(document).ready(function () {
+		if (localStorage.length > 0) {
+
+		// Display previous logs when page is opened
+			output = "";
+			
+			// Lastest update showing first
+			for (i = localStorage.length - 1; i >= 0; i--) {
+				var num = parseInt(localStorage.key(i));
+				var date = new Date(num).toString();
+				var output = output + "<p> " + date + " - " +
+				localStorage[localStorage.key(i)] + "</p>";
+			};
+		};
+		elemLog = $('#log')[0];
+		elemLog.innerHTML = output;
+	});
+
+	$(document).ready(function() {
+		$(document).keypress(function(e) {
+			if (e.which == 13) {
+
+				captainLog = $('#msg')[0].value;
+				localStorage[new Date().getTime()] = captainLog;
+				$('#msg')[0].value = '';  // Clear text box
+				
+				elemLog = $('#log')[0];
+				output = "";
+
+				// Lastest update showing first
+				for (j = localStorage.length - 1; j >= 0; j--) {
+					num = parseInt(localStorage.key(j));
+					date = new Date(num).toString();
+					output = output + "<p> " + date + " - " +
+					localStorage[localStorage.key(j)] + "</p>";
+				};				
+				elemLog.innerHTML = output;
+			};
+		});
+	});
+
+	</script>
+
+</head>
+
+<body>
+	<h1>Captain's Log</h1>
+	<h3>New entry: <input type="text" id="msg" name="msg" size="30" /></h3>
+	<div id="log"></div>
+</body>
+</html>
