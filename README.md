@@ -1,6 +1,6 @@
 ## README.md for Tufts University Comp 20 Spring 2016 (Reflection) ##
-By: Yuta Okada
-Date: April 21st, 2016
+By: Yuta Okada <br>
+Date: April 21st, 2016 <br>
 
 1. What is this purpose of this Git repository? (duh!)
 
