@@ -47,7 +47,7 @@
 	<br>
 
 	<I> <b> Issue Two "Application crash caused by un-sanitized input data in /sendLocation API" </b> </I> <br>
-	<b> Issue: </b> The client side application that uses /sendLocation API may crash due to the response data that are not in the data format as expected <br>
+	<b> Issue: </b> The client side application that uses /sendLocation API may crash due to the response data that are not in the data format as expected (given the resquesting application -- in this case Assignment 2 -- does not validate the lat and lng given for each check-ins) <br>
 	<b> Location / page: </b> /sendLocation API <br>
 	<b> Severity of issue: </b> MEDIUM <br>
 	<b> Description: </b> The latitude and longitude inputs are floatified, then stored in MongoDB collection. The issue is that when invalid non-float latitude or longitude information is sent by users via POST (i.e. words), the data is floatified, which returns NaN, and then NaN is stored in the latitude/longitude field. When the user access the /sendLocation API, the list of all the check-in records are sent back to the user, meaning that records having NaN for their latitude/longitude field gets to sent back. When the user (browser) parse the response data, and run toRad function, for example, the attempt to execute toRad fails, causing the application (including, but not limited to, Assignment 2 -- whatever application that assumes the response lat and lng data are in float) to crash. The example is shown below. <br>
