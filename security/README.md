@@ -10,11 +10,9 @@ SPECIFICATIONS:
 2. The consulting report is in HTML format, and is named index.html.
 
 
-COLLABORATER:
-
+COLLABORATER: <br>
 None
 
 
-HOURS SPENT:
-
+HOURS SPENT: <br>
 I have approximately spent 15 hours completing this assignment.
