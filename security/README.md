@@ -11,8 +11,10 @@ SPECIFICATIONS:
 
 
 COLLABORATER:
+
 None
 
 
 HOURS SPENT:
+
 I have approximately spent 15 hours completing this assignment.
